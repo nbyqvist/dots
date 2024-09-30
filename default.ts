@@ -39,7 +39,7 @@ export const baseConfig: Context = {
     includedOutput: {
         width: 2256,
         height: 1504,
-        scale: 1.25,
+        scale: 1.15,
     },
     vscodeTheme: "Quiet Light",
     rightClickScroll: false,

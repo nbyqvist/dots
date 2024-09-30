@@ -42,6 +42,7 @@ return {
   hide_tab_bar_if_only_one_tab = true,
   hide_mouse_cursor_when_typing = false,
   allow_square_glyphs_to_overflow_width = "Never",
+  default_prog = { '/usr/bin/bash' },
 }
 `
 };

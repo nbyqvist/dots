@@ -4,11 +4,11 @@ const content = (c: Context) => `
 # Use super as $mod
 set $mod Mod4
 
-# Use alacritty as $term
-set $term alacritty
+# Use wezterm as $term
+set $term wezterm
 
 # Launch a new terminal
-bindsym $mod+Return exec alacritty
+bindsym $mod+Return exec $term
 
 # Use wofi for launching apps
 set $menu wofi --show drun
@@ -34,15 +34,17 @@ mode "Resizing" {
 # Enter resizing mode
 bindsym $mod+r mode Resizing
 
+# Set output resolution
+output eDP-1 mode ${c.includedOutput.width}x${c.includedOutput.height} scale ${c.includedOutput.scale} pos 0 0
+
 # Lock after 15 minutes, screen off after 20
 exec swayidle -w timeout 900 'swaylock -f' timeout 1200 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' before-sleep 'swaylock -f'
 
 # Use $mod for accessing floating windows
 floating_modifier $mod
 
-# 2 px border
-default_border normal 2
-default_floating_border normal 2
+# No borders (or titles)
+default_border none
 
 # Focus windows by mousing over
 focus_follows_mouse yes
@@ -158,8 +160,8 @@ bar {
 }
 
 # Gaps (space between windows)
-gaps inner 0
-gaps outer 0
+gaps inner 4
+gaps outer 4
 
 # Import variables
 exec "dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP XDG_SESSION_TYPE XCURSOR_THEME XCURSOR_SIZE; systemctl --user start sway-session.target"
