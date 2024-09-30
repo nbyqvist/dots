@@ -45,7 +45,9 @@ const settings = (c: Context) => ({
         }
       }
     ]
-  }
+  },
+  // Chromium uses some special pixels that are smaller than regular pixels I guess
+  "window.zoomLevel": 1,
 });
 
 export const config = new ConfigModule().withBasePath("$HOME/.config/VSCodium/User").withOutputs({
