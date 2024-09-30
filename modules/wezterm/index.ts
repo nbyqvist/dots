@@ -1,8 +1,8 @@
 import { ConfigModule, OutputType, type Context } from '../../mvdots';
 
 const content = (c: Context) => {
-    const { base, bg, bright, fg } = c.colors;
-    return `
+  const { base, bg, bright, fg } = c.colors;
+  return `
 local wez = require('wezterm')
 
 return {
@@ -48,5 +48,5 @@ return {
 };
 
 export const config = new ConfigModule().withBasePath("$HOME/.config/wezterm").withOutputs({
-    ['wezterm.lua']: { type: OutputType.Function, transform: content },
+  ['wezterm.lua']: { type: OutputType.Function, transform: content },
 });

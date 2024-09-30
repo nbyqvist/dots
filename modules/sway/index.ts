@@ -1,4 +1,4 @@
-import { ConfigModule, OutputType, type Context  } from '../../mvdots';
+import { ConfigModule, OutputType, type Context } from '../../mvdots';
 
 const content = (c: Context) => `
 # Use super as $mod
@@ -190,5 +190,5 @@ exec dunst
 `;
 
 export const config = new ConfigModule().withBasePath("$HOME/.config/sway").withOutputs({
-    ['config']: { type: OutputType.Function, transform: content },
+  ['config']: { type: OutputType.Function, transform: content },
 });

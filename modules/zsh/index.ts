@@ -6,5 +6,5 @@ eval "$(starship init zsh)"
 `;
 
 export const config = new ConfigModule().withBasePath("$HOME").withOutputs({
-    [".zshrc"]: { type: OutputType.String, literal: content },
+  [".zshrc"]: { type: OutputType.String, literal: content },
 });

@@ -2,8 +2,8 @@ import { ConfigModule, OutputType, type Context } from '../../mvdots';
 
 // I should just generate toml directly, but meh
 const content = (c: Context) => {
-    const { base, bg, bright, fg } = c.colors;
-    return `
+  const { base, bg, bright, fg } = c.colors;
+  return `
 [colors]
 
 [colors.primary]
@@ -51,5 +51,5 @@ y = 4
 };
 
 export const config = new ConfigModule().withBasePath("$HOME/.config/alacritty").withOutputs({
-    ['alacritty.toml']: { type: OutputType.Function, transform: content },
+  ['alacritty.toml']: { type: OutputType.Function, transform: content },
 });

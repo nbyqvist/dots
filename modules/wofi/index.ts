@@ -1,7 +1,7 @@
 import { ConfigModule, OutputType, type Context } from '../../mvdots';
 
 const configContent =
-`
+  `
 allow_images=true
 allow_markup=false
 gtk_dark=true
@@ -14,7 +14,7 @@ width=800
 `;
 
 const styleContent = (c: Context): string =>
-`
+  `
 #window {
   border-radius: 10px;
   border: 1px solid ${c.colors.base.black};

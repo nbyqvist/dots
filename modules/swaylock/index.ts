@@ -9,5 +9,5 @@ show-failed-attempts
 `;
 
 export const config = new ConfigModule().withBasePath("$HOME/.config/swaylock").withOutputs({
-    ['config']: { type: OutputType.Function, transform: content },
+  ['config']: { type: OutputType.Function, transform: content },
 });

@@ -12,5 +12,5 @@ profile home-dock {
 `;
 
 export const config = new ConfigModule().withBasePath("$HOME/.config/kanshi").withOutputs({
-    ['config']: { type: OutputType.Function, transform: content },
+  ['config']: { type: OutputType.Function, transform: content },
 });

@@ -1,127 +1,127 @@
 import { ConfigModule, OutputType, type Context } from '../../mvdots';
 
 const waybarConfig = [
-    {
-        "modules-left": [
-            "sway/workspaces",
-            "sway/mode"
+  {
+    "modules-left": [
+      "sway/workspaces",
+      "sway/mode"
+    ],
+    "modules-center": [
+      "clock"
+    ],
+    "modules-right": [
+      "idle_inhibitor",
+      "backlight",
+      "pulseaudio",
+      "network",
+      "cpu",
+      "memory",
+      "temperature",
+      "battery",
+      "tray",
+      "custom/power"
+    ],
+    "backlight": {
+      "format": "{percent}% {icon}",
+      "format-icons": [
+        ""
+      ]
+    },
+    "battery": {
+      "format": "{capacity}% {icon}",
+      "format-alt": "{time} {icon}",
+      "format-charging": "{capacity}% 󰂄",
+      "format-icons": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "format-plugged": "{capacity}% ",
+      "format-time": "{H}:{M}",
+      "full-at": 99,
+      "states": {
+        "critical": 15,
+        "good": 95,
+        "warning": 30
+      }
+    },
+    "clock": {
+      "format-alt": "{:Y-%m-%d}",
+      "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
+    },
+    "cpu": {
+      "format": "{usage}% ",
+      "tooltip": false
+    },
+    "custom/power": {
+      "format": " ⏻ ",
+      "on-click": "wlogout"
+    },
+    "height": 32,
+    "idle_inhibitor": {
+      "format": "{icon}",
+      "format-icons": {
+        "activated": "",
+        "deactivated": ""
+      }
+    },
+    "memory": {
+      "format": "{}% ",
+      "tooltip": false
+    },
+    "network": {
+      "format-alt": "{ifname}: {ipaddr}/{cidr}",
+      "format-disconnected": " Disconnected",
+      "format-ethernet": "󰈁 {ifname}",
+      "format-linked": "{ifname} (No IP)",
+      "format-wifi": "{signalStrength}% "
+    },
+    "position": "top",
+    "pulseaudio": {
+      "format": "{volume}% {icon}",
+      "format-bluetooth": "{volume}% {icon} {format_source}",
+      "format-bluetooth-muted": "{icon} {format_source}",
+      "format-icons": {
+        "car": "",
+        "default": [
+          "",
+          "",
+          ""
         ],
-        "modules-center": [
-            "clock"
-        ],
-        "modules-right": [
-            "idle_inhibitor",
-            "backlight",
-            "pulseaudio",
-            "network",
-            "cpu",
-            "memory",
-            "temperature",
-            "battery",
-            "tray",
-            "custom/power"
-        ],
-        "backlight": {
-            "format": "{percent}% {icon}",
-            "format-icons": [
-                ""
-            ]
-        },
-        "battery": {
-            "format": "{capacity}% {icon}",
-            "format-alt": "{time} {icon}",
-            "format-charging": "{capacity}% 󰂄",
-            "format-icons": [
-                "",
-                "",
-                "",
-                "",
-                "",
-                ""
-            ],
-            "format-plugged": "{capacity}% ",
-            "format-time": "{H}:{M}",
-            "full-at": 99,
-            "states": {
-                "critical": 15,
-                "good": 95,
-                "warning": 30
-            }
-        },
-        "clock": {
-            "format-alt": "{:Y-%m-%d}",
-            "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
-        },
-        "cpu": {
-            "format": "{usage}% ",
-            "tooltip": false
-        },
-        "custom/power": {
-            "format": " ⏻ ",
-            "on-click": "wlogout"
-        },
-        "height": 32,
-        "idle_inhibitor": {
-            "format": "{icon}",
-            "format-icons": {
-                "activated": "",
-                "deactivated": ""
-            }
-        },
-        "memory": {
-            "format": "{}% ",
-            "tooltip": false
-        },
-        "network": {
-            "format-alt": "{ifname}: {ipaddr}/{cidr}",
-            "format-disconnected": " Disconnected",
-            "format-ethernet": "󰈁 {ifname}",
-            "format-linked": "{ifname} (No IP)",
-            "format-wifi": "{signalStrength}% "
-        },
-        "position": "top",
-        "pulseaudio": {
-            "format": "{volume}% {icon}",
-            "format-bluetooth": "{volume}% {icon} {format_source}",
-            "format-bluetooth-muted": "{icon} {format_source}",
-            "format-icons": {
-                "car": "",
-                "default": [
-                    "",
-                    "",
-                    ""
-                ],
-                "headphone": "",
-                "phone": "",
-                "portable": ""
-            },
-            "format-muted": "",
-            "format-source": "{volume}% ",
-            "format-source-muted": "",
-            "on-click": "pavucontrol",
-            "scroll-step": 1
-        },
-        "sway/mode": {
-            "format": "<span style=\"italic\">{}</span>"
-        },
-        "sway/window": {
-            "format": "{}",
-            "max-length": 40,
-            "rewrite": {
-                "(.*) - Mozilla Firefox": "Firefox: $1"
-            }
-        },
-        "temperature": {
-            "critical-threshold": 75,
-            "format": "{temperatureC}°C ",
-            "hwmon-path": [
-                "/sys/class/hwmon/hwmon4/temp1_input"
-            ]
-        },
-        "tray": {
-            "spacing": 10
-        }
+        "headphone": "",
+        "phone": "",
+        "portable": ""
+      },
+      "format-muted": "",
+      "format-source": "{volume}% ",
+      "format-source-muted": "",
+      "on-click": "pavucontrol",
+      "scroll-step": 1
+    },
+    "sway/mode": {
+      "format": "<span style=\"italic\">{}</span>"
+    },
+    "sway/window": {
+      "format": "{}",
+      "max-length": 40,
+      "rewrite": {
+        "(.*) - Mozilla Firefox": "Firefox: $1"
+      }
+    },
+    "temperature": {
+      "critical-threshold": 75,
+      "format": "{temperatureC}°C ",
+      "hwmon-path": [
+        "/sys/class/hwmon/hwmon4/temp1_input"
+      ]
+    },
+    "tray": {
+      "spacing": 10
     }
+  }
 ];
 
 const waybarStyle = (c: Context) => `
@@ -200,6 +200,6 @@ window#waybar {
 `;
 
 export const config = new ConfigModule().withBasePath("$HOME/.config/waybar").withOutputs({
-    ["config"]: { type: OutputType.String, literal: JSON.stringify(waybarConfig) },
-    ["style.css"]: { type: OutputType.Function, transform: waybarStyle },
+  ["config"]: { type: OutputType.String, literal: JSON.stringify(waybarConfig) },
+  ["style.css"]: { type: OutputType.Function, transform: waybarStyle },
 });
