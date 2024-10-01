@@ -164,6 +164,12 @@ input "type:touchpad" {
   natural_scroll disabled
 }
 
+${c.rightClickScroll ?
+`input "*" {
+  scroll_method on_button_down
+  scroll_button BTN_RIGHT
+}` : ''}
+
 # Launch waybar
 bar {
   swaybar_command waybar
