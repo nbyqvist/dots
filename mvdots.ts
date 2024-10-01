@@ -62,6 +62,7 @@ export interface Context {
   includedOutput: OutputConfig;
   rightClickScroll: boolean;
   vscodeTheme: string;
+  vscodeZoom: 0 | 1;
 }
 
 export class ConfigModule {

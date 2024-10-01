@@ -12,4 +12,5 @@ export const ctx = {
     scale: 1,
   },
   rightClickScroll: true,
+  vscodeZoom: 0,
 };
