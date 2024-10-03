@@ -186,7 +186,7 @@ exec "dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYS
 exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK
 
 # Allow Picture-in-Picture windows to float and follow focus across workspaces
-for_window [title="^Picture in picture$"] floating enable, sticky enable, border none
+for_window [title="^Picture-in-Picture$"] floating enable, sticky enable, border none
 
 # Launch dunst (for notifications)
 exec dunst
