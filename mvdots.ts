@@ -63,6 +63,7 @@ export interface Context {
   rightClickScroll: boolean;
   vscodeTheme: string;
   vscodeZoom: 0 | 1;
+  useGuix: boolean;
 }
 
 export class ConfigModule {

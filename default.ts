@@ -44,4 +44,5 @@ export const baseConfig: Context = {
   vscodeTheme: "Quiet Light",
   rightClickScroll: false,
   vscodeZoom: 1,
+  useGuix: false,
 };
