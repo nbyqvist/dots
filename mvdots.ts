@@ -64,6 +64,7 @@ export interface Context {
   vscodeTheme: string;
   vscodeZoom: 0 | 1;
   useGuix: boolean;
+  useMise: boolean;
 }
 
 export class ConfigModule {
