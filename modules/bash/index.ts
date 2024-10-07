@@ -11,7 +11,7 @@ GUIX_PROFILE="$HOME/.config/guix/current"
 . "$GUIX_PROFILE/etc/profile"
 `;
 
-const miseContent = `eval "$(~/.local/bin/mise activate bash)"`;
+const miseContent = `eval "$(mise activate bash)"`;
 
 const content = (c: Context) => `
 [[ $- != *i* ]] && return
