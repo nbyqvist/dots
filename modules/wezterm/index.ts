@@ -38,7 +38,7 @@ return {
     weight = '${c.font.style}',
   }),
   harfbuzz_features = { "calt=0", "clig=0", "liga=0" },
-  font_size = ${c.font.size},
+  font_size = ${c.font.size - 1},
   hide_tab_bar_if_only_one_tab = true,
   hide_mouse_cursor_when_typing = false,
   allow_square_glyphs_to_overflow_width = "Never",
