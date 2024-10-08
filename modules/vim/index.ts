@@ -1,4 +1,5 @@
-import { ConfigModule, OutputType } from '../../mvdots';
+import { OutputType } from '../../types';
+import { ConfigModule } from '../../mvdots';
 
 export const config = new ConfigModule().withBasePath("$HOME").withSelfPath(import.meta.dir).withOutputs({
   ['.vimrc']: { type: OutputType.String, literal: 'source ~/.config/vim/init.vim' },

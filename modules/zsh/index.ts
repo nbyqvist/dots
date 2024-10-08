@@ -1,4 +1,5 @@
-import { ConfigModule, OutputType, type OutputSpec } from '../../mvdots';
+import { OutputType, type Context } from '../../types';
+import { ConfigModule } from '../../mvdots';
 
 const content = `
 export PATH="$PATH:$HOME/.local/bin"

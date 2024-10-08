@@ -1,4 +1,5 @@
-import { ConfigModule, OutputType, type Context } from "../../mvdots"
+import { OutputType, type Context } from '../../types';
+import { ConfigModule } from '../../mvdots';
 
 const settings = (c: Context) => ({
   "workbench.startupEditor": "none",

@@ -1,4 +1,5 @@
-import { ConfigModule, OutputType, type Context } from '../../mvdots';JSON
+import { OutputType, type Context } from '../../types';
+import { ConfigModule } from '../../mvdots';
 
 const guixContent = `
 if [ -n "$GUIX_ENVIRONMENT" ]; then
