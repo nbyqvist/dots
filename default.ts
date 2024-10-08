@@ -45,5 +45,4 @@ export const baseConfig: Context = {
   rightClickScroll: false,
   vscodeZoom: 1,
   useGuix: false,
-  useMise: false,
 };

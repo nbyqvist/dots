@@ -8,5 +8,4 @@ export const ctx = {
     size: 16,
   },
   useGuix: true,
-  useMise: true,
 };

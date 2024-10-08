@@ -12,8 +12,6 @@ GUIX_PROFILE="$HOME/.config/guix/current"
 . "$GUIX_PROFILE/etc/profile"
 `;
 
-const miseContent = `eval "$(mise activate bash)"`;
-
 const content = (c: Context) => `
 [[ $- != *i* ]] && return
 
@@ -29,7 +27,6 @@ ${c.useGuix ? guixContent : ''}
 
 export DOTNET_CLI_TELEMETRY_OPTOUT=1
 alias typescript-language-server='bunx --bun typescript-language-server --stdio'
-${c.useMise ? miseContent : ''}
 `;
 
 export const config = new ConfigModule().withBasePath("$HOME").withOutputs({
