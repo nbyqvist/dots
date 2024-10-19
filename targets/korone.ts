@@ -10,7 +10,7 @@ export const ctx = {
   includedOutput: {
     height: 1600,
     width: 2560,
-    scale: 1.25,
+    scale: 1.125,
   },
   useGuix: false,
 };
