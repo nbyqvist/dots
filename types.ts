@@ -60,4 +60,5 @@ export interface Context {
   vscodeTheme: string;
   vscodeZoom: 0 | 1;
   useGuix: boolean;
+  useAsdf: boolean;
 }

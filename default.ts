@@ -1,4 +1,4 @@
-import type { Context } from "./mvdots";
+import type { Context } from "./types";
 
 export const baseConfig: Context = {
   // Github light color scheme
@@ -45,4 +45,5 @@ export const baseConfig: Context = {
   rightClickScroll: false,
   vscodeZoom: 1,
   useGuix: false,
+  useAsdf: false,
 };

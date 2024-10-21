@@ -12,6 +12,11 @@ GUIX_PROFILE="$HOME/.config/guix/current"
 . "$GUIX_PROFILE/etc/profile"
 `;
 
+const asdfContent = `
+  . "$HOME/.asdf/asdf.sh"
+  . "$HOME/.asdf/completions/asdf.bash"
+`
+
 const content = (c: Context) => `
 [[ $- != *i* ]] && return
 
@@ -27,7 +32,9 @@ ${c.useGuix ? guixContent : ''}
 
 export DOTNET_CLI_TELEMETRY_OPTOUT=1
 alias typescript-language-server='bunx --bun typescript-language-server --stdio'
-. "$HOME/.deno/env"`;
+. "$HOME/.deno/env"
+
+${ c.useAsdf ? asdfContent : ''}`;
 
 export const config = new ConfigModule().withBasePath("$HOME").withOutputs({
   ['.bashrc']: { type: OutputType.Function, transform: content },
