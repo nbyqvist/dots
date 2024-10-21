@@ -193,9 +193,17 @@ for_window [title="^Picture-in-Picture$"] floating enable, sticky enable, border
 exec dunst
 
 # Set wallpaper
-# output * bg ~/src/dotfiles/wallpaper.jpg fill
+exec bash ~/.config/sway/set_wallpaper.bash
 `;
+
+const setWallpaperContent = `
+#!/usr/bin/env bash
+if [ -f ~/Pictures/wallpaper.jpeg ]; then
+  sway output '*' bg ~/Pictures/wallpaper.jpeg fill
+fi
+`
 
 export const config = new ConfigModule().withBasePath("$HOME/.config/sway").withOutputs({
   ['config']: { type: OutputType.Function, transform: content },
+  ['set_wallpaper.bash']: { type: OutputType.String, literal: setWallpaperContent }
 });
