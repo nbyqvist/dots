@@ -7,6 +7,7 @@ allow_images=true
 allow_markup=false
 gtk_dark=true
 height=600
+insensitive=true
 lines=8
 no_actions=true
 parse_action=false

@@ -56,8 +56,8 @@ mouse_warping output
 
 workspace_layout default
 
-# Allow going to last workspace by pressing number of current workspace
-workspace_auto_back_and_forth yes
+# Disable going to last workspace by pressing number of current workspace
+workspace_auto_back_and_forth no
 
 # Shortcut to lock screen
 bindsym $mod+Mod1+l exec swaylock
