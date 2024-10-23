@@ -3,7 +3,7 @@ import { baseConfig } from '../default';
 export const ctx = {
   ...baseConfig,
   font: {
-    family: 'BlexMono Nerd Font Mono',
+    family: 'FiraCode Nerd Font Mono',
     style: 'Light',
     size: 16,
   },
@@ -13,4 +13,5 @@ export const ctx = {
     scale: 1.125,
   },
   useGuix: false,
+  useAsdf: true,
 };
