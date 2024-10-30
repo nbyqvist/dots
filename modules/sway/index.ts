@@ -5,8 +5,8 @@ const content = (c: Context) => `
 # Use super as $mod
 set $mod Mod4
 
-# Use wezterm as $term
-set $term wezterm
+# Use alacritty as $term
+set $term alacritty
 
 # Launch a new terminal
 bindsym $mod+Return exec $term
