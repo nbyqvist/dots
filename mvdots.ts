@@ -66,11 +66,11 @@ const outputToString = async (ctx: Context, cm: ConfigModule, o: OutputSpec): Pr
   }
 
   if (o.type === OutputType.String) {
-    return o.literal;
+    return o.literal.trim();
   }
 
   if (o.type === OutputType.Function) {
-    return o.transform(ctx);
+    return o.transform(ctx).trim();
   }
 
   throw new Error("Invalid type");
