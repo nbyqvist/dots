@@ -1,7 +1,9 @@
 import { baseConfig } from '../default';
+import { theme } from '../themes/catppuccin_latte';
 
 export const ctx = {
   ...baseConfig,
+  colors: theme,
   font: {
     ...baseConfig.font,
     size: 15,
