@@ -2,9 +2,12 @@ import { OutputType, type Context } from '../../types';
 import { ConfigModule } from '../../mvdots';
 
 const settings = (c: Context) => ({
+  "catppuccin.boldKeywords": false,
+  "catppuccin.italicKeywords": false,
+  "catppuccin.italicComments": false,
   "workbench.startupEditor": "none",
-  "workbench.colorTheme": "Quiet Light",
-  "workbench.iconTheme": "material-icon-theme",
+  "workbench.colorTheme": c.colors.vscodeTheme,
+  "workbench.iconTheme": c.colors.vscodeIconTheme,
   "editor.bracketPairColorization.enabled": true,
   "editor.fontFamily": `'${c.font.family} ${c.font.style}'`,
   "editor.fontSize": c.font.size,

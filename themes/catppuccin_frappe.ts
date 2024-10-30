@@ -27,4 +27,6 @@ export const theme: ColorPalette = {
   },
 
   helixTheme: "catppuccin_frappe",
+  vscodeIconTheme: "catppuccin-frappe",
+  vscodeTheme: "Catppuccin Frappé",
 };

@@ -38,6 +38,8 @@ export interface ColorPalette {
   base: Palette;
   bright: Palette;
   helixTheme: string;
+  vscodeIconTheme: string;
+  vscodeTheme: string;
 }
 
 export interface FontConfig {
@@ -58,7 +60,6 @@ export interface Context {
   boldFont: FontConfig;
   includedOutput: OutputConfig;
   rightClickScroll: boolean;
-  vscodeTheme: string;
   vscodeZoom: 0 | 1;
   useGuix: boolean;
   useAsdf: boolean;

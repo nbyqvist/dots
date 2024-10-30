@@ -19,7 +19,6 @@ export const baseConfig: Context = {
     height: 1504,
     scale: 1.15,
   },
-  vscodeTheme: "Quiet Light",
   rightClickScroll: false,
   vscodeZoom: 1,
   useGuix: false,
