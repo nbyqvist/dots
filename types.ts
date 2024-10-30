@@ -37,6 +37,7 @@ export interface ColorPalette {
   bg: string;
   base: Palette;
   bright: Palette;
+  helixTheme: string;
 }
 
 export interface FontConfig {

@@ -1,4 +1,6 @@
-export default {
+import type { ColorPalette } from "../types";
+
+export const theme: ColorPalette = {
   fg: "#24292f",
   bg: "#ffffff",
   base: {
@@ -21,4 +23,5 @@ export default {
     cyan: "#3192aa",
     white: "#d1d5da",
   },
+  helixTheme: "github_light",
 };
