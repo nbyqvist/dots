@@ -44,6 +44,7 @@ return {
   hide_mouse_cursor_when_typing = false,
   allow_square_glyphs_to_overflow_width = "Never",
   default_prog = { '/usr/bin/bash' },
+  window_close_confirmation = "NeverPrompt",
 }
 `
 };
