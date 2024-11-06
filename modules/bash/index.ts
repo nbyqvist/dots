@@ -37,7 +37,7 @@ ${c.useGuix ? guixContent : ''}
 export DOTNET_CLI_TELEMETRY_OPTOUT=1
 alias typescript-language-server='bunx --bun typescript-language-server --stdio'
 . "$HOME/.deno/env"
-${ c.useDirenv ? direnvContent : ''};
+${ c.useDirenv ? direnvContent : ''}
 ${ c.useAsdf ? asdfContent : ''}`;
 
 export const config = new ConfigModule().withBasePath("$HOME").withOutputs({
