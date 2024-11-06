@@ -23,4 +23,5 @@ export const baseConfig: Context = {
   vscodeZoom: 1,
   useGuix: false,
   useAsdf: false,
+  useDirenv: false,
 };

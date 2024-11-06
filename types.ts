@@ -63,4 +63,5 @@ export interface Context {
   vscodeZoom: 0 | 1;
   useGuix: boolean;
   useAsdf: boolean;
+  useDirenv: boolean;
 }
