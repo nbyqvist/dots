@@ -82,7 +82,7 @@ for (const m of modules) {
     const outputs = m.outputs ?? {}
     const selectedOutput = outputs[output];
     const p = join(b, output);
-    console.log(`${selectedOutput.type}${p}`);
+    console.log(`${selectedOutput.type} ${p}`);
     await nestedWriteFile(p, await outputToString(ctx, m, selectedOutput));
   });
 }

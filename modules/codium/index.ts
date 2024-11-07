@@ -19,6 +19,7 @@ const settings = (c: Context) => ({
   "terminal.integrated.fontSize": c.font.size,
   "terminal.integrated.fontFamily": `'${c.font.family} ${c.font.style}'`,
   "editor.renderWhitespace": "trailing",
+  "window.titleBarStyle": "custom",
   "files.associations": {
     "*.eta": "html"
   },
