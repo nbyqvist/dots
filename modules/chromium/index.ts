@@ -1,5 +1,5 @@
-import { OutputType } from '../../types';
-import { ConfigModule } from '../../mvdots';
+import { OutputType } from '../../types.ts';
+import { ConfigModule } from '../../mvdots.ts';
 
 const content = `
 --ozone-platform-hint=auto

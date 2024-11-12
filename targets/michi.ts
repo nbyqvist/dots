@@ -1,4 +1,4 @@
-import { baseConfig } from '../default';
+import { baseConfig } from '../default.ts';
 
 export const ctx = {
   ...baseConfig,

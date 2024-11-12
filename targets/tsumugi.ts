@@ -1,5 +1,5 @@
-import { baseConfig } from '../default';
-import { theme } from '../themes/github_light';
+import { baseConfig } from '../default.ts';
+import { theme } from '../themes/github_light.ts';
 
 export const ctx = {
   ...baseConfig,

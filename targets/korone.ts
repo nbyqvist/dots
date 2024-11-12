@@ -1,5 +1,5 @@
-import { baseConfig } from '../default';
-import { theme } from '../themes/catppuccin_latte';
+import { baseConfig } from '../default.ts';
+import { theme } from '../themes/catppuccin_latte.ts';
 
 export const ctx = {
   ...baseConfig,

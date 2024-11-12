@@ -1,5 +1,5 @@
-import { OutputType, type Context } from '../../types';
-import { ConfigModule } from '../../mvdots';
+import { OutputType, type Context } from '../../types.ts';
+import { ConfigModule } from '../../mvdots.ts';
 
 const content = (c: Context) => `
 # Use super as $mod

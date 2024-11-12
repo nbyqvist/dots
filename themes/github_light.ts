@@ -1,4 +1,4 @@
-import type { ColorPalette } from "../types";
+import type { ColorPalette } from '../types.ts';
 
 export const theme: ColorPalette = {
   fg: "#24292f",

@@ -1,0 +1,6 @@
+{
+  "nodeModulesDir": "auto",
+  "imports": {
+    "glob": "npm:glob@^11.0.0"
+  }
+}

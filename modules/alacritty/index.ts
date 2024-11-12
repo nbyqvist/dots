@@ -1,5 +1,5 @@
-import { OutputType, type Context } from '../../types';
-import { ConfigModule } from '../../mvdots';
+import { OutputType, type Context } from '../../types.ts';
+import { ConfigModule } from '../../mvdots.ts';
 
 // I should just generate toml directly, but meh
 const content = (c: Context) => {

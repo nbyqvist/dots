@@ -1,5 +1,5 @@
-import { baseConfig } from '../default';
-import { theme } from '../themes/github_ultradark';
+import { baseConfig } from '../default.ts';
+import { theme } from '../themes/github_ultradark.ts';
 
 export const ctx = {
   ...baseConfig,

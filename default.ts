@@ -1,4 +1,4 @@
-import { theme } from "./themes/github_light";
+import { theme } from "./themes/github_light.ts";
 import type { Context } from "./types";
 
 export const baseConfig: Context = {
