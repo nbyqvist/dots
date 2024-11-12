@@ -27,7 +27,7 @@ export class ConfigModule {
 
 const exists = async (filename: string): Promise<boolean> => {
   try {
-    await fs.stat(filename);
+    await Deno.stat(filename);
     return true;
   } catch (e) {
     return false;
@@ -58,7 +58,7 @@ const main = async () => {
   }
 
   const nestedWriteFile = async (path: string, content: string): Promise<void> => {
-    if (!await fs.stat(path)) {
+    if (exists(path)) {
       const segments = path.split('/');
       const containingPath = segments.slice(0, segments.length - 1).join('/');
       const parentDirExists = await exists(containingPath);

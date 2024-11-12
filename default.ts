@@ -24,4 +24,5 @@ export const baseConfig: Context = {
   useGuix: false,
   useAsdf: false,
   useDirenv: false,
+  helixBin: 'helix',
 };

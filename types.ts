@@ -64,4 +64,5 @@ export interface Context {
   useGuix: boolean;
   useAsdf: boolean;
   useDirenv: boolean;
+  helixBin: string;
 }

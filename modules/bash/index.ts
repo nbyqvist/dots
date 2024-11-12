@@ -25,7 +25,7 @@ const content = (c: Context) => `
 [[ $- != *i* ]] && return
 
 alias ls='ls --color=auto'
-alias hx=helix
+${c.helixBin == 'hx' ? '' : `alias hx=${c.helixBin}`}
 alias grep='grep --color=auto'
 PS1='[\\u@\h \W]\$ '
 eval "$(starship init bash)"
