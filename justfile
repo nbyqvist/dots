@@ -1,5 +1,5 @@
 deploy:
-  bun run mvdots.ts
+  deno run --allow-all mvdots.ts
 
 format:
   bunx prettier -c **/*.ts --write
