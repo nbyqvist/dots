@@ -16,4 +16,5 @@ export const ctx = {
   rightClickScroll: true,
   vscodeZoom: 0,
   useAsdf: true,
+  useDirenv: true,
 };
