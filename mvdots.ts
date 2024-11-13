@@ -36,7 +36,6 @@ const exists = async (filename: string): Promise<boolean> => {
 
 const main = async () => {
   const g = await glob('modules/*/*.ts');
-  console.log(g);
 
   const modules: Array<ConfigModule> = [];
   for (const z of g) {
@@ -72,7 +71,6 @@ const main = async () => {
   };
 
   const outputToString = async (ctx: Context, cm: ConfigModule, o: OutputSpec): Promise<string> => {
-    console.log(cm);
     if (o.type === OutputType.File) {
       const c = await fs.readFile(join(cm.selfPath, o.filePath));
       return c.toString('utf8');
