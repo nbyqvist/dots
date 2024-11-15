@@ -1,4 +1,4 @@
-import { OutputType, type Context } from '../../types.ts';
+import { type Context, transformOutput } from '../../types.ts';
 import { ConfigModule } from '../../mvdots.ts';
 
 const guixContent = `
@@ -39,9 +39,9 @@ alias typescript-language-server='bunx --bun typescript-language-server --stdio'
 if [ -e "$HOME/.deno/env" ]; then
   . "$HOME/.deno/env"
 fi
-${ c.useDirenv ? direnvContent : ''}
-${ c.useAsdf ? asdfContent : ''}`;
+${c.useDirenv ? direnvContent : ''}
+${c.useAsdf ? asdfContent : ''}`;
 
-export const config = new ConfigModule().withBasePath("$HOME").withOutputs({
-  ['.bashrc']: { type: OutputType.Function, transform: content },
+export const config = new ConfigModule().withBasePath('$HOME').withOutputs({
+  ['.bashrc']: transformOutput(content),
 });

@@ -1,4 +1,4 @@
-import { OutputType, type Context } from '../../types.ts';
+import { type Context, stringOutput, transformOutput } from '../../types.ts';
 import { ConfigModule } from '../../mvdots.ts';
 
 const content = (c: Context) => `
@@ -155,11 +155,14 @@ input "type:touchpad" {
   natural_scroll disabled
 }
 
-${c.rightClickScroll ?
-`input "*" {
+${
+  c.rightClickScroll
+    ? `input "*" {
   scroll_method on_button_down
   scroll_button BTN_RIGHT
-}` : ''}
+}`
+    : ''
+}
 
 # Launch waybar
 bar {
@@ -191,9 +194,10 @@ const setWallpaperContent = `
 if [ -f ~/Pictures/wallpaper.jpeg ]; then
   sway output '*' bg ~/Pictures/wallpaper.jpeg fill
 fi
-`
+`;
 
-export const config = new ConfigModule().withBasePath("$HOME/.config/sway").withOutputs({
-  ['config']: { type: OutputType.Function, transform: content },
-  ['set_wallpaper.bash']: { type: OutputType.String, literal: setWallpaperContent }
-});
+export const config = new ConfigModule().withBasePath('$HOME/.config/sway')
+  .withOutputs({
+    ['config']: transformOutput(content),
+    ['set_wallpaper.bash']: stringOutput(setWallpaperContent),
+  });

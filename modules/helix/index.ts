@@ -1,4 +1,4 @@
-import { OutputType, type Context } from '../../types.ts';
+import { type Context, fileOutput, transformOutput } from '../../types.ts';
 import { ConfigModule } from '../../mvdots.ts';
 
 const configContent = (ctx: Context) => `
@@ -69,7 +69,8 @@ C-n = "goto_next_buffer"
 C-v = "vsplit"
 `;
 
-export const config = new ConfigModule().withBasePath("$HOME/.config/helix").withSelfPath(import.meta.dirname).withOutputs({
-  ['config.toml']: { type: OutputType.Function, transform: configContent },
-  ['languages.toml']: { type: OutputType.File, filePath: './languages.toml' },
-});
+export const config = new ConfigModule().withBasePath('$HOME/.config/helix')
+  .withSelfPath(import.meta.dirname!).withOutputs({
+    ['config.toml']: transformOutput(configContent),
+    ['languages.toml']: fileOutput('./languages.toml'),
+  });

@@ -1,18 +1,18 @@
-import { theme } from "./themes/github_light.ts";
-import type { Context } from "./types";
+import { theme } from './themes/github_light.ts';
+import type { Context } from './types.ts';
 
 export const baseConfig: Context = {
   // Github light color scheme
   colors: theme,
   font: {
     size: 16,
-    family: "FiraCode Nerd Font Mono",
-    style: "Light",
+    family: 'FiraCode Nerd Font Mono',
+    style: 'Light',
   },
   boldFont: {
     size: 16,
-    family: "FiraCode Nerd Font Mono",
-    style: "Regular",
+    family: 'FiraCode Nerd Font Mono',
+    style: 'Regular',
   },
   includedOutput: {
     width: 2256,

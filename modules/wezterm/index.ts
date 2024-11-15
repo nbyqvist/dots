@@ -1,4 +1,4 @@
-import { OutputType, type Context } from '../../types.ts';
+import { type Context, transformOutput } from '../../types.ts';
 import { ConfigModule } from '../../mvdots.ts';
 
 const content = (c: Context) => {
@@ -46,9 +46,10 @@ return {
   default_prog = { '/usr/bin/bash' },
   window_close_confirmation = "NeverPrompt",
 }
-`
+`;
 };
 
-export const config = new ConfigModule().withBasePath("$HOME/.config/wezterm").withOutputs({
-  ['wezterm.lua']: { type: OutputType.Function, transform: content },
-});
+export const config = new ConfigModule().withBasePath('$HOME/.config/wezterm')
+  .withOutputs({
+    ['wezterm.lua']: transformOutput(content),
+  });

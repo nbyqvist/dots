@@ -1,4 +1,4 @@
-import { OutputType, type Context } from '../../types.ts';
+import { type Context, transformOutput } from '../../types.ts';
 import { ConfigModule } from '../../mvdots.ts';
 
 const content = (c: Context) => `
@@ -9,6 +9,7 @@ line-color=${c.colors.base.white}
 show-failed-attempts
 `;
 
-export const config = new ConfigModule().withBasePath("$HOME/.config/swaylock").withOutputs({
-  ['config']: { type: OutputType.Function, transform: content },
-});
+export const config = new ConfigModule().withBasePath('$HOME/.config/swaylock')
+  .withOutputs({
+    ['config']: transformOutput(content),
+  });

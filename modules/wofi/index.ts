@@ -1,8 +1,7 @@
-import { OutputType, type Context } from '../../types.ts';
+import { type Context, stringOutput, transformOutput } from '../../types.ts';
 import { ConfigModule } from '../../mvdots.ts';
 
-const configContent =
-  `
+const configContent = `
 allow_images=true
 allow_markup=false
 gtk_dark=true
@@ -15,8 +14,7 @@ show=drun
 width=800
 `;
 
-const styleContent = (c: Context): string =>
-  `
+const styleContent = (c: Context): string => `
 #window {
   border-radius: 10px;
   border: 1px solid ${c.colors.base.black};
@@ -58,7 +56,8 @@ const styleContent = (c: Context): string =>
 }
 `;
 
-export const config = new ConfigModule().withBasePath("$HOME/.config/wofi").withOutputs({
-  ['config']: { type: OutputType.String, literal: configContent },
-  ['style.css']: { type: OutputType.Function, transform: styleContent },
-});
+export const config = new ConfigModule().withBasePath('$HOME/.config/wofi')
+  .withOutputs({
+    ['config']: stringOutput(configContent),
+    ['style.css']: transformOutput(styleContent),
+  });

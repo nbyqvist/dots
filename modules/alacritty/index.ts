@@ -1,4 +1,4 @@
-import { OutputType, type Context } from '../../types.ts';
+import { type Context, transformOutput } from '../../types.ts';
 import { ConfigModule } from '../../mvdots.ts';
 
 // I should just generate toml directly, but meh
@@ -51,6 +51,7 @@ y = 4
 `;
 };
 
-export const config = new ConfigModule().withBasePath("$HOME/.config/alacritty").withOutputs({
-  ['alacritty.toml']: { type: OutputType.Function, transform: content },
-});
+export const config = new ConfigModule().withBasePath('$HOME/.config/alacritty')
+  .withOutputs({
+    ['alacritty.toml']: transformOutput(content),
+  });

@@ -1,4 +1,4 @@
-import { OutputType, type Context } from '../../types.ts';
+import { type Context, transformOutput } from '../../types.ts';
 import { ConfigModule } from '../../mvdots.ts';
 
 const content = (c: Context) => `
@@ -8,10 +8,13 @@ profile undocked {
 
 profile home-dock {
   output "eDP-1" mode ${c.includedOutput.width}x${c.includedOutput.height} position 0,0 scale ${c.includedOutput.scale}
-  output "LG Electronics LG HDR 4K 007NTNHM4103" mode 3840x2160@60 position ${c.includedOutput.width / c.includedOutput.scale},0 scale 1.000000
+  output "LG Electronics LG HDR 4K 007NTNHM4103" mode 3840x2160@60 position ${
+  c.includedOutput.width / c.includedOutput.scale
+},0 scale 1.000000
 }
 `;
 
-export const config = new ConfigModule().withBasePath("$HOME/.config/kanshi").withOutputs({
-  ['config']: { type: OutputType.Function, transform: content },
-});
+export const config = new ConfigModule().withBasePath('$HOME/.config/kanshi')
+  .withOutputs({
+    ['config']: transformOutput(content),
+  });

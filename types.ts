@@ -2,24 +2,56 @@ export enum OutputType {
   String = 'String',
   File = 'File',
   Function = 'Function',
+  Dir = 'Dir',
 }
 
 export interface StringContentSpec {
-  type: OutputType.String,
+  type: OutputType.String;
   literal: string;
 }
 
+export const stringOutput = (literal: string): StringContentSpec => ({
+  type: OutputType.String,
+  literal,
+});
+
 export interface FileContentSpec {
-  type: OutputType.File,
+  type: OutputType.File;
   filePath: string;
 }
 
+export const fileOutput = (filePath: string): FileContentSpec => ({
+  type: OutputType.File,
+  filePath,
+});
+
 export interface FunctionContentSpec {
-  type: OutputType.Function,
+  type: OutputType.Function;
   transform: (c: Context) => string;
 }
 
-export type OutputSpec = StringContentSpec | FileContentSpec | FunctionContentSpec;
+export const transformOutput = (
+  transform: (c: Context) => string,
+): FunctionContentSpec => ({
+  type: OutputType.Function,
+  transform,
+});
+
+export interface DirContentSpec {
+  type: OutputType.Dir;
+  dirPath: string;
+}
+
+export const dirOutput = (dirPath: string): DirContentSpec => ({
+  type: OutputType.Dir,
+  dirPath,
+});
+
+export type OutputSpec =
+  | StringContentSpec
+  | FileContentSpec
+  | FunctionContentSpec
+  | DirContentSpec;
 
 interface Palette {
   black: string;
