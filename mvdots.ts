@@ -34,12 +34,12 @@ const nestedWriteFile = async (
     const containingPath = segments.slice(0, segments.length - 1).join('/');
     const parentDirExists = await exists(containingPath);
     if (!parentDirExists) {
-      await fs.mkdir(containingPath, { recursive: true });
       console.log(`mkdir ${containingPath}`);
+      await fs.mkdir(containingPath, { recursive: true });
     }
   }
-  await fs.writeFile(path, content);
   console.log(`write ${path}`);
+  await fs.writeFile(path, content);
 };
 
 const nestedWriteDir = async (
@@ -50,11 +50,20 @@ const nestedWriteDir = async (
   const containingPath = segments.slice(0, segments.length - 1).join('/');
   const parentDirExists = await exists(containingPath);
   if (!parentDirExists) {
-    await fs.mkdir(containingPath, { recursive: true });
     console.log(`mkdir ${containingPath}`);
+    await fs.mkdir(containingPath, { recursive: true });
   }
-  await fs.cp(inputDirPath, outputDirPath);
+  if (await exists(outputDirPath)) {
+    console.log(`rm -rf ${outputDirPath}`);
+    await fs.rm(outputDirPath, {
+      recursive: true,
+      force: true,
+    });
+  }
   console.log(`cp -r ${inputDirPath} ${outputDirPath}`);
+  await fs.cp(inputDirPath, outputDirPath, {
+    force: true,
+  });
 };
 
 const outputToString = async (
@@ -124,10 +133,10 @@ const main = async () => {
         await nestedWriteFile(
           outputPath,
           await outputToString(ctx, configModule, selectedOutput),
-        );
+        ).catch(e => console.error(`write error ${e}`));
       } else {
         const inputPath = join(configModule.selfPath, selectedOutput.dirPath);
-        await nestedWriteDir(outputPath, inputPath);
+        await nestedWriteDir(outputPath, inputPath).catch(e => console.error(`dir error ${e}`));
       }
     });
   }

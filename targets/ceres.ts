@@ -17,4 +17,5 @@ export const ctx = {
   vscodeZoom: 0,
   useAsdf: true,
   useDirenv: true,
+  neovimColorscheme: 'github_dark_high_contrast',
 };

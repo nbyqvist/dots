@@ -97,4 +97,5 @@ export interface Context {
   useAsdf: boolean;
   useDirenv: boolean;
   helixBin: string;
+  neovimColorscheme: string;
 }

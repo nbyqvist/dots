@@ -58,9 +58,7 @@ O.setup = function()
   opt.showmatch = true
   opt.updatetime = 300
   opt.shortmess = 'atToOFc'
-  opt.foldlevel = 1
-  opt.bg = 'light'
-  vim.cmd('colorscheme github_light')
+  opt.foldlevel = 1  
 end
 
 return O

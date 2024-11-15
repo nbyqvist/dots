@@ -25,4 +25,5 @@ export const baseConfig: Context = {
   useAsdf: false,
   useDirenv: false,
   helixBin: 'helix',
+  neovimColorscheme: 'github_light',
 };

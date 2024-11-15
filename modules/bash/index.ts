@@ -43,8 +43,8 @@ fi
 if [ -e "$HOME/.dotnet/tools" ]; then
   export PATH="$PATH:$HOME/.dotnet/tools"
 fi
-${ c.useDirenv ? direnvContent : ''}
-${ c.useAsdf ? asdfContent : ''}`;
+${c.useDirenv ? direnvContent : ''}
+${c.useAsdf ? asdfContent : ''}`;
 
 export const config = new ConfigModule().withBasePath('$HOME').withOutputs({
   ['.bashrc']: transformOutput(content),
