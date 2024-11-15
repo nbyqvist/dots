@@ -1,8 +1,4 @@
-import {
-  Context,
-  dirOutput,
-  transformOutput,
-} from '../../types.ts';
+import { Context, dirOutput, transformOutput } from '../../types.ts';
 import { ConfigModule } from '../../mvdots.ts';
 
 const content = (ctx: Context) => `

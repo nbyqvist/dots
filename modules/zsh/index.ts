@@ -43,4 +43,3 @@ autoload -Uz compinit && compinit
 export const config = new ConfigModule().withBasePath('$HOME').withOutputs({
   ['.zshrc']: stringOutput(content),
 });
-

@@ -98,4 +98,5 @@ export interface Context {
   useDirenv: boolean;
   helixBin: string;
   neovimColorscheme: string;
+  batColorscheme: string;
 }

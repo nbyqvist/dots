@@ -133,10 +133,12 @@ const main = async () => {
         await nestedWriteFile(
           outputPath,
           await outputToString(ctx, configModule, selectedOutput),
-        ).catch(e => console.error(`write error ${e}`));
+        ).catch((e) => console.error(`write error ${e}`));
       } else {
         const inputPath = join(configModule.selfPath, selectedOutput.dirPath);
-        await nestedWriteDir(outputPath, inputPath).catch(e => console.error(`dir error ${e}`));
+        await nestedWriteDir(outputPath, inputPath).catch((e) =>
+          console.error(`dir error ${e}`)
+        );
       }
     });
   }

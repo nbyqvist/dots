@@ -19,4 +19,5 @@ export const ctx = {
   useAsdf: true,
   useDirenv: true,
   neovimColorscheme: 'github_dark_high_contrast',
+  batColorscheme: 'gruvbox-dark',
 };
