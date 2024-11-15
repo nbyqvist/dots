@@ -3,6 +3,7 @@ import { join } from 'node:path';
 import * as fs from 'node:fs/promises';
 import { env } from 'node:process';
 import { type Context, type OutputSpec, OutputType } from './types.ts';
+import { existsSync } from 'node:fs';
 
 export class ConfigModule {
   public basePath: string | null = null;
@@ -29,14 +30,12 @@ const nestedWriteFile = async (
   path: string,
   content: string,
 ): Promise<void> => {
-  if (await exists(path)) {
-    const segments = path.split('/');
-    const containingPath = segments.slice(0, segments.length - 1).join('/');
-    const parentDirExists = await exists(containingPath);
-    if (!parentDirExists) {
-      console.log(`mkdir ${containingPath}`);
-      await fs.mkdir(containingPath, { recursive: true });
-    }
+  const segments = path.split('/');
+  const containingPath = segments.slice(0, segments.length - 1).join('/');
+  const parentDirExists = existsSync(containingPath);
+  if (!parentDirExists) {
+    console.log(`mkdir ${containingPath}`);
+    await fs.mkdir(containingPath, { recursive: true });
   }
   console.log(`write ${path}`);
   await fs.writeFile(path, content);
@@ -48,12 +47,12 @@ const nestedWriteDir = async (
 ): Promise<void> => {
   const segments = outputDirPath.split('/');
   const containingPath = segments.slice(0, segments.length - 1).join('/');
-  const parentDirExists = await exists(containingPath);
+  const parentDirExists = existsSync(containingPath);
   if (!parentDirExists) {
     console.log(`mkdir ${containingPath}`);
     await fs.mkdir(containingPath, { recursive: true });
   }
-  if (await exists(outputDirPath)) {
+  if (existsSync(outputDirPath)) {
     console.log(`rm -rf ${outputDirPath}`);
     await fs.rm(outputDirPath, {
       recursive: true,
@@ -85,15 +84,6 @@ const outputToString = async (
   }
 
   throw new Error('Invalid type');
-};
-
-const exists = async (filename: string): Promise<boolean> => {
-  try {
-    await Deno.stat(filename);
-    return true;
-  } catch (_e) {
-    return false;
-  }
 };
 
 const main = async () => {
@@ -133,12 +123,10 @@ const main = async () => {
         await nestedWriteFile(
           outputPath,
           await outputToString(ctx, configModule, selectedOutput),
-        ).catch((e) => console.error(`write error ${e}`));
+        );
       } else {
         const inputPath = join(configModule.selfPath, selectedOutput.dirPath);
-        await nestedWriteDir(outputPath, inputPath).catch((e) =>
-          console.error(`dir error ${e}`)
-        );
+        await nestedWriteDir(outputPath, inputPath);
       }
     });
   }
