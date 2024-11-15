@@ -5,7 +5,8 @@ export const ctx = {
   ...baseConfig,
   colors: theme,
   font: {
-    ...baseConfig.font,
+    family: 'BlexMono Nerd Font Mono',
+    style: 'Light',
     size: 15,
   },
   includedOutput: {
