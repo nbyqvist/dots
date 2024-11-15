@@ -39,8 +39,12 @@ alias typescript-language-server='bunx --bun typescript-language-server --stdio'
 if [ -e "$HOME/.deno/env" ]; then
   . "$HOME/.deno/env"
 fi
-${c.useDirenv ? direnvContent : ''}
-${c.useAsdf ? asdfContent : ''}`;
+
+if [ -e "$HOME/.dotnet/tools" ]; then
+  export PATH="$PATH:$HOME/.dotnet/tools"
+fi
+${ c.useDirenv ? direnvContent : ''}
+${ c.useAsdf ? asdfContent : ''}`;
 
 export const config = new ConfigModule().withBasePath('$HOME').withOutputs({
   ['.bashrc']: transformOutput(content),
