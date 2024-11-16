@@ -1,11 +1,12 @@
-import { stringOutput } from '../../types.ts';
+import { type Context, transformOutput } from '../../types.ts';
 import { ConfigModule } from '../../mvdots.ts';
 
-const content = `
+const content = (ctx: Context) => `
 export DOTNET_CLI_TELEMETRY_OPTOUT=1
 alias ls="ls --color=auto"
 alias grep="grep --color=auto"
 alias typescript-language-server='bunx --bun typescript-language-server --stdio'
+${ctx.helixBin != 'hx' ? `alias hx=${ctx.helixBin}` : ''}
 
 autoload -U up-line-or-beginning-search
 autoload -U down-line-or-beginning-search
@@ -41,5 +42,5 @@ autoload -Uz compinit && compinit
 `;
 
 export const config = new ConfigModule().withBasePath('$HOME').withOutputs({
-  ['.zshrc']: stringOutput(content),
+  ['.zshrc']: transformOutput(content),
 });
