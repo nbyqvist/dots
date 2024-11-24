@@ -37,6 +37,7 @@ if [ -e "$HOME/.asdf/asdf.sh" ]; then
 fi
 
 eval "$(starship init zsh)"
+eval "$(direnv hook zsh)"
 
 autoload -Uz compinit && compinit
 `;
