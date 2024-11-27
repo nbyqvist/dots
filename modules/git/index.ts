@@ -1,5 +1,5 @@
-import { fileOutput, stringOutput, transformOutput } from "../../types.ts";
-import { ConfigModule } from "../../mvdots.ts";
+import { stringOutput } from '../../types.ts';
+import { ConfigModule } from '../../mvdots.ts';
 
 const content = `
 [alias]
@@ -16,8 +16,8 @@ const content = `
 `;
 
 export const config = new ConfigModule()
-  .withBasePath("$HOME")
+  .withBasePath('$HOME')
   .withSelfPath(import.meta.dirname!)
   .withOutputs({
-    [".gitconfig"]: stringOutput(content),
+    ['.gitconfig']: stringOutput(content),
   });
