@@ -8,6 +8,11 @@ alias grep="grep --color=auto"
 alias typescript-language-server='bunx --bun typescript-language-server --stdio'
 ${ctx.helixBin != 'hx' ? `alias hx=${ctx.helixBin}` : ''}
 
+HISTFILE=~/.zsh_history
+HISTSIZE=10000
+SAVEHIST=50000
+setopt inc_append_history
+
 autoload -U up-line-or-beginning-search
 autoload -U down-line-or-beginning-search
 zle -N up-line-or-beginning-search
