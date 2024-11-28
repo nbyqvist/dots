@@ -9,6 +9,6 @@ export const ctx = {
   },
   helixBin: 'hx',
   useGuix: false,
-  useAsdf: false,
+  useAsdf: true,
   useDirenv: false,
 };
