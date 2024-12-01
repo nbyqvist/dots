@@ -25,5 +25,5 @@ export const theme: ColorPalette = {
   },
   helixTheme: 'github_light',
   vscodeIconTheme: 'material-icon-theme',
-  vscodeTheme: 'Default Light+',
+  vscodeTheme: 'GitHub Light',
 };
