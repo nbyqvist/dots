@@ -1,4 +1,4 @@
-import { type Context, transformOutput } from '../../types.ts';
+import { type Context, hasBin, transformOutput } from '../../types.ts';
 import { ConfigModule } from '../../mvdots.ts';
 
 const settings = (c: Context) => ({
@@ -55,10 +55,11 @@ const settings = (c: Context) => ({
   'window.zoomLevel': c.vscodeZoom,
 });
 
-export const config = new ConfigModule().withBasePath(
-  '$HOME/.config/VSCodium/User',
-).withOutputs({
-  ['settings.json']: transformOutput((c: Context) =>
-    JSON.stringify(settings(c), null, 2)
-  ),
-});
+export const config = new ConfigModule()
+  .withBasePath('$HOME/.config/VSCodium/User')
+  .withInstallCondition(hasBin('codium'))
+  .withOutputs({
+    ['settings.json']: transformOutput((c: Context) =>
+      JSON.stringify(settings(c), null, 2)
+    ),
+  });

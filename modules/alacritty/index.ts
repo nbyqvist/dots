@@ -1,4 +1,4 @@
-import { type Context, transformOutput } from '../../types.ts';
+import { type Context, hasBin, transformOutput } from '../../types.ts';
 import { ConfigModule } from '../../mvdots.ts';
 
 // I should just generate toml directly, but meh
@@ -51,7 +51,9 @@ y = 4
 `;
 };
 
-export const config = new ConfigModule().withBasePath('$HOME/.config/alacritty')
+export const config = new ConfigModule()
+  .withBasePath('$HOME/.config/alacritty')
+  .withInstallCondition(hasBin('alacritty'))
   .withOutputs({
     ['alacritty.toml']: transformOutput(content),
   });

@@ -1,4 +1,9 @@
-import { type Context, stringOutput, transformOutput } from '../../types.ts';
+import {
+  type Context,
+  hasBin,
+  stringOutput,
+  transformOutput,
+} from '../../types.ts';
 import { ConfigModule } from '../../mvdots.ts';
 
 const waybarConfig = [
@@ -201,7 +206,9 @@ window#waybar {
 }
 `;
 
-export const config = new ConfigModule().withBasePath('$HOME/.config/waybar')
+export const config = new ConfigModule()
+  .withBasePath('$HOME/.config/waybar')
+  .withInstallCondition(hasBin('waybar'))
   .withOutputs({
     ['config']: stringOutput(JSON.stringify(waybarConfig, null, 2)),
     ['style.css']: transformOutput(waybarStyle),

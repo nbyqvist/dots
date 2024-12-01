@@ -1,4 +1,9 @@
-import { type Context, stringOutput, transformOutput } from '../../types.ts';
+import {
+  type Context,
+  hasBin,
+  stringOutput,
+  transformOutput,
+} from '../../types.ts';
 import { ConfigModule } from '../../mvdots.ts';
 
 const content = (c: Context) => `
@@ -196,7 +201,9 @@ if [ -f ~/Pictures/wallpaper.jpeg ]; then
 fi
 `;
 
-export const config = new ConfigModule().withBasePath('$HOME/.config/sway')
+export const config = new ConfigModule()
+  .withBasePath('$HOME/.config/sway')
+  .withInstallCondition(hasBin('sway'))
   .withOutputs({
     ['config']: transformOutput(content),
     ['set_wallpaper.bash']: stringOutput(setWallpaperContent),

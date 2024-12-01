@@ -1,4 +1,4 @@
-import { type Context, transformOutput } from '../../types.ts';
+import { type Context, hasBin, transformOutput } from '../../types.ts';
 import { ConfigModule } from '../../mvdots.ts';
 
 const content = (c: Context) => {
@@ -49,7 +49,9 @@ return {
 `;
 };
 
-export const config = new ConfigModule().withBasePath('$HOME/.config/wezterm')
+export const config = new ConfigModule()
+  .withBasePath('$HOME/.config/wezterm')
+  .withInstallCondition(hasBin('wezterm'))
   .withOutputs({
     ['wezterm.lua']: transformOutput(content),
   });

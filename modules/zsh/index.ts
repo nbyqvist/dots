@@ -1,4 +1,4 @@
-import { type Context, transformOutput } from '../../types.ts';
+import { type Context, hasBin, transformOutput } from '../../types.ts';
 import { ConfigModule } from '../../mvdots.ts';
 
 const content = (ctx: Context) => `
@@ -47,6 +47,9 @@ eval "$(direnv hook zsh)"
 autoload -Uz compinit && compinit
 `;
 
-export const config = new ConfigModule().withBasePath('$HOME').withOutputs({
-  ['.zshrc']: transformOutput(content),
-});
+export const config = new ConfigModule()
+  .withBasePath('$HOME')
+  .withInstallCondition(hasBin('zsh'))
+  .withOutputs({
+    ['.zshrc']: transformOutput(content),
+  });

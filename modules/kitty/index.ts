@@ -1,4 +1,4 @@
-import { type Context, transformOutput } from '../../types.ts';
+import { type Context, hasBin, transformOutput } from '../../types.ts';
 import { ConfigModule } from '../../mvdots.ts';
 
 const content = (c: Context) => {
@@ -33,7 +33,9 @@ color15 ${bright.white}
 `;
 };
 
-export const config = new ConfigModule().withBasePath('$HOME/.config/kitty')
+export const config = new ConfigModule()
+  .withBasePath('$HOME/.config/kitty')
+  .withInstallCondition(hasBin('kitty'))
   .withOutputs({
     ['kitty.conf']: transformOutput(content),
   });

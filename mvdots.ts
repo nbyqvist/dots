@@ -2,16 +2,28 @@ import { glob } from 'npm:glob';
 import { join } from 'node:path';
 import * as fs from 'node:fs/promises';
 import { env } from 'node:process';
-import { type Context, type OutputSpec, OutputType } from './types.ts';
+import {
+  type Context,
+  InstallCondition,
+  InstallConditionType,
+  type OutputSpec,
+  OutputType,
+} from './types.ts';
 import { existsSync } from 'node:fs';
 
 export class ConfigModule {
   public basePath: string | null = null;
+  public installConditions: Array<InstallCondition> = [];
   public outputs: Record<string, OutputSpec> | null = null;
   public selfPath: string = import.meta.filename!;
 
   public withBasePath(p: string): ConfigModule {
     this.basePath = p;
+    return this;
+  }
+
+  public withInstallCondition(i: InstallCondition): ConfigModule {
+    this.installConditions.push(i);
     return this;
   }
 
@@ -86,6 +98,32 @@ const outputToString = async (
   throw new Error('Invalid type');
 };
 
+const checkInstallCondition = async (i: InstallCondition): Promise<boolean> => {
+  if (i.type === InstallConditionType.Always) return true;
+  if (i.type === InstallConditionType.HasBin) {
+    for (const bin of i.binNames) {
+      const whichExec = new Deno.Command(
+        'which',
+        {
+          args: [bin],
+          stdin: 'null',
+          stdout: 'null',
+          stderr: 'null',
+        },
+      );
+      const whichChild = whichExec.spawn();
+      const status = await whichChild.status;
+      if (status.code === 0) {
+        console.log(`System has ${bin}`);
+        return true;
+      }
+    }
+    return false;
+  }
+
+  return false;
+};
+
 const main = async () => {
   const g = await glob('modules/*/*.ts');
   const modules: Array<ConfigModule> = [];
@@ -110,6 +148,20 @@ const main = async () => {
   }
 
   for (const configModule of modules) {
+    const shouldInstall =
+      (await Promise.all(configModule.installConditions.map((condition) =>
+        checkInstallCondition(condition)
+      ))).every((c) =>
+        c
+      );
+    if (configModule.installConditions.length > 0 && !shouldInstall) {
+      Object.keys(configModule.outputs ?? {}).forEach((file) => {
+        console.log(
+          `Skipping ${configModule.basePath}/${file} (Condition not met)`,
+        );
+      });
+      continue;
+    }
     const moduleOutputPath = (configModule.basePath ?? '')?.replace(
       '$HOME',
       home,

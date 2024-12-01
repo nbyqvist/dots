@@ -1,4 +1,4 @@
-import { type Context, transformOutput } from '../../types.ts';
+import { always, type Context, transformOutput } from '../../types.ts';
 import { ConfigModule } from '../../mvdots.ts';
 
 const guixContent = `
@@ -46,6 +46,9 @@ fi
 ${c.useDirenv ? direnvContent : ''}
 ${c.useAsdf ? asdfContent : ''}`;
 
-export const config = new ConfigModule().withBasePath('$HOME').withOutputs({
-  ['.bashrc']: transformOutput(content),
-});
+export const config = new ConfigModule()
+  .withBasePath('$HOME')
+  .withInstallCondition(always())
+  .withOutputs({
+    ['.bashrc']: transformOutput(content),
+  });

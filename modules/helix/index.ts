@@ -1,4 +1,9 @@
-import { type Context, fileOutput, transformOutput } from '../../types.ts';
+import {
+  type Context,
+  fileOutput,
+  hasBin,
+  transformOutput,
+} from '../../types.ts';
 import { ConfigModule } from '../../mvdots.ts';
 
 const configContent = (ctx: Context) => `
@@ -69,7 +74,9 @@ C-n = "goto_next_buffer"
 C-v = "vsplit"
 `;
 
-export const config = new ConfigModule().withBasePath('$HOME/.config/helix')
+export const config = new ConfigModule()
+  .withBasePath('$HOME/.config/helix')
+  .withInstallCondition(hasBin(['hx', 'helix']))
   .withSelfPath(import.meta.dirname!).withOutputs({
     ['config.toml']: transformOutput(configContent),
     ['languages.toml']: fileOutput('./languages.toml'),

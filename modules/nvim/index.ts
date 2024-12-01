@@ -1,4 +1,4 @@
-import { Context, dirOutput, transformOutput } from '../../types.ts';
+import { Context, dirOutput, hasBin, transformOutput } from '../../types.ts';
 import { ConfigModule } from '../../mvdots.ts';
 
 const content = (ctx: Context) => `
@@ -15,7 +15,9 @@ vim.opt.bg = '${ctx.neovimColorscheme.includes('dark') ? 'dark' : 'light'}'
 vim.cmd('colorscheme ${ctx.neovimColorscheme}')
 `;
 
-export const config = new ConfigModule().withBasePath('$HOME/.config/nvim')
+export const config = new ConfigModule()
+  .withBasePath('$HOME/.config/nvim')
+  .withInstallCondition(hasBin('nvim'))
   .withSelfPath(import.meta.dirname!).withOutputs({
     ['init.lua']: transformOutput(content),
     ['lua']: dirOutput('./lua'),

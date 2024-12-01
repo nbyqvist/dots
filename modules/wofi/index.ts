@@ -1,4 +1,9 @@
-import { type Context, stringOutput, transformOutput } from '../../types.ts';
+import {
+  type Context,
+  hasBin,
+  stringOutput,
+  transformOutput,
+} from '../../types.ts';
 import { ConfigModule } from '../../mvdots.ts';
 
 const configContent = `
@@ -56,7 +61,9 @@ const styleContent = (c: Context): string => `
 }
 `;
 
-export const config = new ConfigModule().withBasePath('$HOME/.config/wofi')
+export const config = new ConfigModule()
+  .withBasePath('$HOME/.config/wofi')
+  .withInstallCondition(hasBin('wofi'))
   .withOutputs({
     ['config']: stringOutput(configContent),
     ['style.css']: transformOutput(styleContent),

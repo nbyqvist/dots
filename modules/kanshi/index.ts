@@ -1,4 +1,4 @@
-import { type Context, transformOutput } from '../../types.ts';
+import { type Context, hasBin, transformOutput } from '../../types.ts';
 import { ConfigModule } from '../../mvdots.ts';
 
 const content = (c: Context) => `
@@ -14,7 +14,9 @@ profile home-dock {
 }
 `;
 
-export const config = new ConfigModule().withBasePath('$HOME/.config/kanshi')
+export const config = new ConfigModule()
+  .withBasePath('$HOME/.config/kanshi')
+  .withInstallCondition(hasBin('kanshi'))
   .withOutputs({
     ['config']: transformOutput(content),
   });

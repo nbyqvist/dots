@@ -100,3 +100,28 @@ export interface Context {
   neovimColorscheme: string;
   batColorscheme: string;
 }
+
+export enum InstallConditionType {
+  HasBin,
+  Always,
+}
+
+export interface HasBinInstallCondition {
+  type: InstallConditionType.HasBin;
+  binNames: Array<string>;
+}
+
+export const hasBin = (binNames: string | Array<string>): InstallCondition => ({
+  type: InstallConditionType.HasBin,
+  binNames: typeof binNames === 'string' ? [binNames] : binNames,
+});
+
+export interface AlwaysInstallCondition {
+  type: InstallConditionType.Always;
+}
+
+export const always = (): InstallCondition => ({
+  type: InstallConditionType.Always,
+});
+
+export type InstallCondition = AlwaysInstallCondition | HasBinInstallCondition;
