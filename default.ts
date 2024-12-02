@@ -27,4 +27,5 @@ export const baseConfig: Context = {
   helixBin: 'helix',
   neovimColorscheme: 'github_light',
   batColorscheme: 'GitHub',
+  hasNotch: false,
 };

@@ -99,6 +99,7 @@ export interface Context {
   helixBin: string;
   neovimColorscheme: string;
   batColorscheme: string;
+  hasNotch: boolean;
 }
 
 export enum InstallConditionType {

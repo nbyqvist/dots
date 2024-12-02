@@ -1,20 +1,10 @@
-import {
-  type Context,
-  hasBin,
-  stringOutput,
-  transformOutput,
-} from '../../types.ts';
+import { type Context, hasBin, transformOutput } from '../../types.ts';
 import { ConfigModule } from '../../mvdots.ts';
 
-const waybarConfig = [
+const waybarConfig = (c: Context) => [
   {
-    'modules-left': [
-      'sway/workspaces',
-      'sway/mode',
-    ],
-    'modules-center': [
-      'clock',
-    ],
+    'modules-left': ['sway/workspaces', 'sway/mode'],
+    'modules-center': c.hasNotch ? [] : ['clock'],
     'modules-right': [
       'idle_inhibitor',
       'backlight',
@@ -25,82 +15,70 @@ const waybarConfig = [
       'temperature',
       'battery',
       'tray',
+      c.hasNotch ? 'clock' : undefined,
       'custom/power',
-    ],
-    'backlight': {
-      'format': '{percent}% {icon}',
-      'format-icons': [
-        '',
-      ],
+    ].filter((x) => x !== undefined),
+    backlight: {
+      format: '{percent}% {icon}',
+      'format-icons': [''],
     },
-    'battery': {
-      'format': '{capacity}% {icon}',
+    battery: {
+      format: '{capacity}% {icon}',
       'format-alt': '{time} {icon}',
       'format-charging': '{capacity}% 󰂄',
-      'format-icons': [
-        '',
-        '',
-        '',
-        '',
-        '',
-        '',
-      ],
+      'format-icons': ['', '', '', '', '', ''],
       'format-plugged': '{capacity}% ',
       'format-time': '{H}:{M}',
       'full-at': 99,
-      'states': {
-        'critical': 15,
-        'good': 95,
-        'warning': 30,
+      states: {
+        critical: 15,
+        good: 95,
+        warning: 30,
       },
     },
-    'clock': {
+    clock: {
       'format-alt': '{:Y-%m-%d}',
       'tooltip-format':
         '<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>',
     },
-    'cpu': {
-      'format': '{usage}% ',
-      'tooltip': false,
+    cpu: {
+      format: '{usage}% ',
+      tooltip: false,
     },
     'custom/power': {
-      'format': ' ⏻ ',
+      format: ' ⏻ ',
       'on-click': 'wlogout',
     },
-    'height': 32,
-    'idle_inhibitor': {
-      'format': '{icon}',
+    height: 32,
+    idle_inhibitor: {
+      format: '{icon}',
       'format-icons': {
-        'activated': '',
-        'deactivated': '',
+        activated: '',
+        deactivated: '',
       },
     },
-    'memory': {
-      'format': '{}% ',
-      'tooltip': false,
+    memory: {
+      format: '{}% ',
+      tooltip: false,
     },
-    'network': {
+    network: {
       'format-alt': '{ifname}: {ipaddr}/{cidr}',
       'format-disconnected': ' Disconnected',
       'format-ethernet': '󰈁 {ifname}',
       'format-linked': '{ifname} (No IP)',
       'format-wifi': '{signalStrength}% ',
     },
-    'position': 'top',
-    'pulseaudio': {
-      'format': '{volume}% {icon}',
+    position: 'top',
+    pulseaudio: {
+      format: '{volume}% {icon}',
       'format-bluetooth': '{volume}% {icon} {format_source}',
       'format-bluetooth-muted': '{icon} {format_source}',
       'format-icons': {
-        'car': '',
-        'default': [
-          '',
-          '',
-          '',
-        ],
-        'headphone': '',
-        'phone': '',
-        'portable': '',
+        car: '',
+        default: ['', '', ''],
+        headphone: '',
+        phone: '',
+        portable: '',
       },
       'format-muted': '',
       'format-source': '{volume}% ',
@@ -109,24 +87,22 @@ const waybarConfig = [
       'scroll-step': 1,
     },
     'sway/mode': {
-      'format': '<span style="italic">{}</span>',
+      format: '<span style="italic">{}</span>',
     },
     'sway/window': {
-      'format': '{}',
+      format: '{}',
       'max-length': 40,
-      'rewrite': {
+      rewrite: {
         '(.*) - Mozilla Firefox': 'Firefox: $1',
       },
     },
-    'temperature': {
+    temperature: {
       'critical-threshold': 75,
-      'format': '{temperatureC}°C ',
-      'hwmon-path': [
-        '/sys/class/hwmon/hwmon4/temp1_input',
-      ],
+      format: '{temperatureC}°C ',
+      'hwmon-path': ['/sys/class/hwmon/hwmon4/temp1_input'],
     },
-    'tray': {
-      'spacing': 10,
+    tray: {
+      spacing: 10,
     },
   },
 ];
@@ -139,6 +115,20 @@ const waybarStyle = (c: Context) => `
   min-height: 0;
   background-color: ${c.colors.bg};
   color: ${c.colors.base.black};
+}
+
+${
+  c.hasNotch
+    ? `
+.modules-left {
+  padding-left: 10px;
+}
+
+.modules-right {
+  padding-right: 10px;
+}
+`
+    : ''
 }
 
 window#waybar {
@@ -210,6 +200,8 @@ export const config = new ConfigModule()
   .withBasePath('$HOME/.config/waybar')
   .withInstallCondition(hasBin('waybar'))
   .withOutputs({
-    ['config']: stringOutput(JSON.stringify(waybarConfig, null, 2)),
+    ['config']: transformOutput((c: Context) =>
+      JSON.stringify(waybarConfig(c), null, 2)
+    ),
     ['style.css']: transformOutput(waybarStyle),
   });
