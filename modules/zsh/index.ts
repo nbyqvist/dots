@@ -28,6 +28,10 @@ if [ -e "$HOME/.deno/env" ]; then
   . "$HOME/.deno/env"
 fi
 
+if [ -e "$HOME/.bun/bin/bun" ]; then
+  export PATH="$PATH:$HOME/.bun/bin"
+fi
+
 if [ -e "$HOME/.cargo/env" ]; then
   . "$HOME/.cargo/env"
 fi
