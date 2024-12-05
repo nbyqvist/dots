@@ -11,3 +11,6 @@ dotfiles is under `modules/`.
 Additionally a few settings, like the names of font families are repeated many
 times throughout multiple different dotfiles. This way I can change the setting
 everywhere from just one place.
+
+## Migrated from github
+(github.com/nbyqvist/dots)
